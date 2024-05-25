@@ -1,14 +1,13 @@
 import { CloseIcon,Box } from "@ya.praktikum/react-developer-burger-ui-components";
 import ModalStyle from './../modal/modal.module.css';
 import ModalOverlay from "../modal-overlay/modalOverlay";
-import IngredientsDetails from "../ingredients-details/ingredietnsDetails";
-import { Children, useEffect, useMemo } from "react";
 import { createPortal } from "react-dom";
-
+import { useEffect } from "react";
 
 const element = document.querySelector('#modal')
 
 export default function Modal({modalOpen, onClose, children}){
+
     
     if(modalOpen){
         return createPortal(

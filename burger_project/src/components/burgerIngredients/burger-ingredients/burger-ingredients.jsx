@@ -6,7 +6,6 @@ import './burger-ingredients.css';
 import IngredientCotigary from "../cotigary-ingredients/ingredietns-cotigary";
 import { Tab,} from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from "../../modal/modal/modal";
-// import IngredientsDetails from "../../modal/ingredients-details_demo/IngredientDetails";
 import IngredientsDetails from "../../modal/ingredients-details/ingredietnsDetails";
 
 function BurgerIngredients({data}){
@@ -24,14 +23,13 @@ function BurgerIngredients({data}){
     
     const [modalOpen, setModalOpen] = useState(false);
     const [ingredient, setIngredient] = useState([]);
-    // const activeIngredient = useRef(null);
+
     const handleClick = useCallback((props) =>{
     setModalOpen(!modalOpen);
     setIngredient(props);
     
-    // activeIngredient.current = item;
     });
-    // console.log(activeIngredient)
+   
     console.log(ingredient)
     return(
         <section className='BurgerIngredients pb-10 '>
@@ -66,13 +64,7 @@ function BurgerIngredients({data}){
                 </Modal>
                 
                 
-                
-                    {/* <IngredientsDetails
-                        ref={activeIngredient}
-                        
-                        isVisible={modalOpen}
-                        onClose={()=>setModalOpen(false)}
-                    /> */}
+    
                     
                 
             </div>

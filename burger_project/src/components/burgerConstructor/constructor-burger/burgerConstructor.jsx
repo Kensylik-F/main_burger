@@ -6,13 +6,15 @@ import { useState } from 'react';
 import PropTypes from "prop-types";
 import OrderDetails from "../../modal/order-details/OrderDetails";
 import ConstructorItem from '../constructor-item/constructorItem';
+import Modal from '../../modal/modal/modal';
+
 function BurgerConstructor({data}){
 
     
     const [modalOpen, setModalOpen] = useState(false);
 
     const orderHandleClick = () =>{
-    setModalOpen(!modalOpen);
+        setModalOpen(!modalOpen);
     };
     return(
         <section className='burger-constructor'>
@@ -27,15 +29,21 @@ function BurgerConstructor({data}){
                     <CurrencyIcon type="primary"style={{width:'50px', height: '50px'}}/>
                 </div>
                 <div className="constructor__button" >
-                    <Button onClick={() => orderHandleClick()} htmlType="button" type="primary" size="large">
+                    <Button onClick={()=> orderHandleClick()} htmlType="button" type="primary" size="large">
                         Нажми на меня
                     </Button>   
                 </div>
             </div>
-            <OrderDetails
+
+            <Modal modalOpen={modalOpen} onClose={()=>setModalOpen(false)}>
+                <OrderDetails/>
+            </Modal>
+                
+
+            {/* <OrderDetails
                  isVisible={modalOpen}
                  onClose={()=>setModalOpen(false)}
-            />
+            /> */}
                 
             
 

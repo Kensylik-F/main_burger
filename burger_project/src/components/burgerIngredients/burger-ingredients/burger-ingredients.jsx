@@ -23,14 +23,28 @@ function BurgerIngredients({data}){
     
     const [modalOpen, setModalOpen] = useState(false);
     const [ingredient, setIngredient] = useState([]);
-
+    const onClose = () =>{
+        setModalOpen(false)
+    };
     const handleClick = useCallback((props) =>{
     setModalOpen(!modalOpen);
     setIngredient(props);
     
     });
    
-    console.log(ingredient)
+    const handleKeyDown = (event) => {
+        if (event.keyCode === 27) {
+          onClose();
+        }
+      };
+    
+      useEffect(() => {
+        document.addEventListener('keydown', handleKeyDown, false);
+    
+        return () => {
+          document.removeEventListener('keydown', handleKeyDown, false);
+        };
+      }, []);
     return(
         <section className='BurgerIngredients pb-10 '>
 
@@ -59,7 +73,7 @@ function BurgerIngredients({data}){
                     mainIngridietns={mainIngridietns}
                 />
                 
-                <Modal modalOpen={modalOpen} onClose={()=> setModalOpen(false)}>
+                <Modal modalOpen={modalOpen} onClose={onClose}>
                     <IngredientsDetails ingredient={ingredient}/>
                 </Modal>
                 

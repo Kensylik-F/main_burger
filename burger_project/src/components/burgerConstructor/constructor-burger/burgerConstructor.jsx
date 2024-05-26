@@ -2,7 +2,7 @@ import './burgerConstructor.css';
 // import constructor from './burger-constructor.module.css';
 import { ConstructorElement,CurrencyIcon,Button,DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import PropTypes from "prop-types";
 import OrderDetails from "../../modal/order-details/OrderDetails";
 import ConstructorItem from '../constructor-item/constructorItem';
@@ -12,10 +12,26 @@ function BurgerConstructor({data}){
 
     
     const [modalOpen, setModalOpen] = useState(false);
-
+    
+    const onClose = () =>{
+        setModalOpen(false)
+    }
     const orderHandleClick = () =>{
         setModalOpen(!modalOpen);
     };
+    const handleKeyDown = (event) => {
+        if (event.keyCode === 27) {
+          onClose();
+        }
+      };
+    
+      useEffect(() => {
+        document.addEventListener('keydown', handleKeyDown, false);
+    
+        return () => {
+          document.removeEventListener('keydown', handleKeyDown, false);
+        };
+      }, []);
     return(
         <section className='burger-constructor'>
             <div className="constructor__wrapper pt-25">
@@ -35,7 +51,7 @@ function BurgerConstructor({data}){
                 </div>
             </div>
 
-            <Modal modalOpen={modalOpen} onClose={()=>setModalOpen(false)}>
+            <Modal modalOpen={modalOpen} onClose={onClose}>
                 <OrderDetails/>
             </Modal>
                 
